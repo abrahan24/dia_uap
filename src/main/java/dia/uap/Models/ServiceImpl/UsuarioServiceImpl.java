@@ -38,5 +38,11 @@ public class UsuarioServiceImpl implements IUsuarioService{
         // TODO Auto-generated method stub
         usuarioDao.deleteById(id);
     }
+
+    @Override
+    public Usuario getUsuario(String nom_usuario, String contrasena) {
+        // TODO Auto-generated method stub
+        return usuarioDao.getUsuario(nom_usuario, contrasena);
+    }
     
 }
