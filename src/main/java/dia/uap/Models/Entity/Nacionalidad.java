@@ -1,7 +1,6 @@
 package dia.uap.Models.Entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,17 +11,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "nacionalidad")
 @Setter
 @Getter
-public class Usuario implements Serializable{
+public class Nacionalidad implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_usuario;
-    private String nom_usuario;
-    private String contrasena;
-    private String estado_usuario;
-    private Date fecha_registro;
-    private Date fecha_modificacion;
+    private Long id_nacionalidad;
+    private String nom_nacionalidad;
+    private String codigo_nacionalidad;
+    private String descripcion_nacionalidad;
+    private String estado_nacionalidad;
 }
