@@ -9,25 +9,30 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "nacionalidad")
+@Table(name = "carrera")
 @Setter
 @Getter
-public class Nacionalidad implements Serializable{
+public class Carrera implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_nacionalidad;
-    private String nom_nacionalidad;
-    private String codigo_nacionalidad;
-    private String descripcion_nacionalidad;
-    private String estado_nacionalidad;
+    private Long id_carrera;
+    private String nom_carrera;
+    private String cod_carrera;
+    private String estado_carrera;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nacionalidad", fetch = FetchType.LAZY)
-	private List<Persona> personas;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_facultad")
+    private Facultad facultad;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "carrera", fetch = FetchType.LAZY)
+	private List<Transaccion> transacciones;
 }

@@ -20,33 +20,37 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "persona")
+@Table(name = "postulante")
 @Setter
 @Getter
-public class Persona implements Serializable{
+public class Postulante implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_persona;
-    private String nom_persona;
-    private String ap_paterno;
-    private String ap_materno;
-    private String ci;
-    private String genero;
-    private String correo;
-    private String celular;
-    private String estado_persona;
-    @DateTimeFormat(pattern = "yyy-MM-dd")
-    private Date fecha_nacimiento;
+    private Long id_postulante;
+    private String cod_postulante;
+    private Integer plan;
     @DateTimeFormat(pattern = "yyy-MM-dd")
     private Date fecha_registro;
     @DateTimeFormat(pattern = "yyy-MM-dd")
     private Date fecha_modificacion;
+    private String estado_postulante;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_nacionalidad")
-    private Nacionalidad nacionalidad;
+    @JoinColumn(name = "id_persona")
+    private Persona persona;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.LAZY)
-	private List<Postulante> postulantes;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_colegio")
+    private Colegio colegio;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tipo_postulante")
+    private TipoPostulante tipoPostulante;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "postulante", fetch = FetchType.LAZY)
+	private List<Detalle_Requisito> detalle_Requisitos;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "postulante", fetch = FetchType.LAZY)
+	private List<Transaccion> transacciones;
 }
