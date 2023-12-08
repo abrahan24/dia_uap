@@ -85,7 +85,7 @@ public class PostulanteController {
                 postulante.setTipoPostulante(tipoPostulanteService.findOne(id_tipo_postulante));
                 postulanteService.save(postulante);
 
-                flash.addAttribute("success", "Se ah Registrado Con Exito!");
+                flash.addAttribute("success", "Se ah Registrado el Postulante Con Exito!"+" Con el Siguiente R.U:"+postulante.getId_postulante());
             } else {
                 flash.addAttribute("success2", "Ya Existe el Postulante Registrado!");
 

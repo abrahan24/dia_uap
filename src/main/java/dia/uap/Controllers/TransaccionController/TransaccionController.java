@@ -145,7 +145,6 @@ public class TransaccionController {
                 detalleRequisitoService.save(detalle_Requisito);
             }
            
-
             flash.addAttribute("success", "Habilitacion Exitosa!");
 
             return "redirect:/transaccion";
