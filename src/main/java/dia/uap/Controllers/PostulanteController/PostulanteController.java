@@ -39,23 +39,32 @@ public class PostulanteController {
     @Autowired
     private INacionalidadService nacionalidadService;
     
-     @GetMapping(value = "/postulante")
-    public String Vista_Postulante(Model model, HttpServletRequest request) {
+    @GetMapping(value = "/postulante")
+    public String Vista_Postulante(Model model, HttpServletRequest request,
+            @RequestParam(name = "success", required = false) String success,
+            @RequestParam(name = "success2",required = false) String success2) {
 
         if (request.getSession().getAttribute("usuario") != null) {
+
+            if (success != null) {
+                model.addAttribute("success", success);
+            }
+            if (success2 != null) {
+                model.addAttribute("success2", success2);
+            }
 
             model.addAttribute("persona", new Persona());
             model.addAttribute("postulante", new Postulante());
             model.addAttribute("nacionalidades", nacionalidadService.findAll());
             model.addAttribute("colegios", colegioService.findAll());
             model.addAttribute("tipoPostulantes", tipoPostulanteService.findAll());
-           
+
             return "Postulante/postulante";
         } else {
             return "redirect:/login";
         }
     }
-
+ 
     @PostMapping(value = "/form_postulante")
     public String Form_Postulante(Model model, @Validated Persona persona, @Validated Postulante postulante,
             @RequestParam(name = "id_nacionalidad") Long id_nacionalidad,
@@ -76,13 +85,12 @@ public class PostulanteController {
                 postulante.setTipoPostulante(tipoPostulanteService.findOne(id_tipo_postulante));
                 postulanteService.save(postulante);
 
-                flash.addAttribute("succes", "Se ah Registrado Con Exito!");
+                flash.addAttribute("success", "Se ah Registrado Con Exito!");
             } else {
-                flash.addAttribute("succes", "Ya Existe el Postulante Registrado!");
+                flash.addAttribute("success2", "Ya Existe el Postulante Registrado!");
 
             }
             
-
             return "redirect:/postulante";
         } else {
             return "redirect:/login";

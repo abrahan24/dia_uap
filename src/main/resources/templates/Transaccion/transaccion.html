@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="Layout/layout :: head"> </head>
+
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div th:replace="Layout/layout :: preloader"> </div>
+
+  <!-- Navbar -->
+  <nav th:replace="Layout/layout :: nav1" > </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside th:replace="Layout/layout :: aside_1"  > </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Registro Transaccion || Habilitacion</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">INICIO</a></li>
+              <li class="breadcrumb-item active">TRANSACCION</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Info boxes -->
+        <div th:replace="Layout/layout :: alert-rojo"></div>
+        <div th:replace="Layout/layout :: alert-verde"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-danger">
+                    <form action="../../../../form_transaccion" method="post">
+                        <div class="card-header">
+                            <h3 class="card-title">Formulario Habilitacion</h3>
+                        </div>
+                        <div class="card-body">
+                
+                            <div class="row">
+                
+                                <div class="col-12">
+                                    <label for=""> Registro Universitario (R.U)</label>
+                                    <input type="number" min="0" class="form-control" th:name="${'id_postulante'}" placeholder="Registro Universitario" required>
+                                </div>
+                                
+                
+                            </div>
+                           
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">SIGUIENTE</button>
+                        </div>
+                    </form>
+                </div>
+            
+            
+            </div>
+          
+        </div>
+        
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside th:replace="Layout/layout :: aside_2" class="control-sidebar control-sidebar-dark"> </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer th:replace="Layout/layout :: footer" > </footer>
+</div>
+
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+
+<!-- Select2 -->
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="plugins/raphael/raphael.min.js"></script>
+<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<!-- ChartJS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard2.js"></script>
+<script>
+    $(function () {
+      //Initialize Select2 Elements
+      $('.select2').select2()
+  
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+    })
+  </script>
+</body>
+</html>

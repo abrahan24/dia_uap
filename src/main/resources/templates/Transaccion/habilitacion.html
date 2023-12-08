@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="Layout/layout :: head"> </head>
+
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div th:replace="Layout/layout :: preloader"> </div>
+
+  <!-- Navbar -->
+  <nav th:replace="Layout/layout :: nav1" > </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside th:replace="Layout/layout :: aside_1"  > </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Registro Transaccion || Habilitacion</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">INICIO</a></li>
+              <li class="breadcrumb-item active">HABILITACIÓN</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Info boxes -->
+        <div th:replace="Layout/layout :: alert-rojo"></div>
+        <div th:replace="Layout/layout :: alert-verde"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-danger">
+                
+                    <div class="card-header">
+                        <h3 class="card-title">Datos Postulante</h3>
+                    </div>
+                    <div class="card-body">
+                
+                        <div class="row">
+                
+                            <div class="col-4">
+                                <label for=""> Nombre</label>
+                                <input type="hidden" th:field="${postulante.id_postulante}">
+                                <input type="text" class="form-control" th:field="${postulante.persona.nom_persona}" placeholder="Nombre" required
+                                    disabled>
+                            </div>
+                            <div class="col-4">
+                                <label for=""> Apellido Paterno</label>
+                                <input type="text" class="form-control" th:field="${postulante.persona.ap_paterno}" placeholder="Apellido Paterno"
+                                    required disabled>
+                            </div>
+                            <div class="col-4">
+                                <label for=""> Apellido Materno</label>
+                                <input type="text" class="form-control" th:field="${postulante.persona.ap_materno}" placeholder="Apellido Materno"
+                                    required disabled>
+                            </div>
+                
+                        </div>
+                        <br>
+                        <div class="row">
+                
+                            <div class="col-4">
+                                <label for=""> Carnet de Identidad</label>
+                                <input type="text" class="form-control" th:field="${postulante.persona.ci}" placeholder="Carnet de Identidad"
+                                    required disabled>
+                            </div>
+                            <div class="col-4">
+                                <label for=""> Genero</label>
+                                <input type="text" class="form-control" th:field="${postulante.persona.genero}" placeholder="Genero" required
+                                    disabled>
+                            </div>
+                            <div class="col-4">
+                                <label for=""> Fecha de Nacimiento</label>
+                                <input type="date" class="form-control" th:field="${postulante.persona.fecha_nacimiento}"
+                                    placeholder="Fecha de Nacimiento" required disabled>
+                            </div>
+                
+                        </div>
+                        <br>
+                        <div class="row">
+                
+                            <div class="col-4">
+                                <label for=""> Correo</label>
+                                <input type="email" class="form-control" th:field="${postulante.persona.correo}" placeholder="Correo" required
+                                    disabled>
+                            </div>
+                            <div class="col-4">
+                                <label for=""> Celular</label>
+                                <input type="text" class="form-control" th:field="${postulante.persona.celular}" placeholder="Celular" required
+                                    disabled>
+                            </div>
+                            <div class="col-4">
+                                <label>Colegio o Unidad Educativa</label>
+                                <select class="form-control select2" name="id_colegio" style="width: 100%;" required disabled>
+                                    <option selected="selected" disabled>Seleccione</option>
+                                    <th:block th:each="c : ${colegios}" th:if="${c.estado_colegio != 'X'}">
+                                        <th:block th:if="${postulante.colegio != null}">
+                                            <option th:if="${c.id_colegio == postulante.colegio.id_colegio}" th:value="${c.id_colegio}"
+                                                th:text="${c.nom_colegio}" selected>Alaska</option>
+                                            <option th:if="${c.id_colegio != postulante.colegio.id_colegio}" th:value="${c.id_colegio}"
+                                                th:text="${c.nom_colegio}">Alaska</option>
+                                        </th:block>
+                                        <th:block th:if="${postulante.colegio == null}">
+                                            <option th:value="${c.id_colegio}" th:text="${c.nom_colegio}">Alaska</option>
+                                        </th:block>
+                            
+                                    </th:block>
+                                </select>
+                            </div>
+                
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-4">
+                                <label for=""> Plan</label>
+                                <input type="hidden" th:field="${postulante.id_postulante}">
+                                <input type="number" min="1" class="form-control" th:field="${postulante.plan}" placeholder="Plan"
+                                    required disabled>
+                            </div>
+                            <div class="col-4">
+                                <label>Tipo Postulante</label>
+                                <select class="form-control select2" name="id_tipo_postulante" style="width: 100%;" required disabled>
+                                    <option selected="selected" disabled>Seleccione</option>
+                                    <th:block th:each="tp : ${tipoPostulantes}" th:if="${tp.estado_tipo_postulante != 'X'}">
+                                        <th:block th:if="${postulante.tipoPostulante != null}">
+                                            <option th:if="${tp.id_tipo_postulante == postulante.tipoPostulante.id_tipo_postulante}"
+                                                th:value="${tp.id_tipo_postulante}" th:text="${tp.descri_tipo_postulante}" selected>Alaska </option>
+                                            <option th:if="${tp.id_tipo_postulante != postulante.tipoPostulante.id_tipo_postulante}"
+                                                th:value="${tp.id_tipo_postulante}" th:text="${tp.descri_tipo_postulante}">Alaska </option>
+                                        </th:block>
+                                        <th:block th:if="${postulante.tipoPostulante == null}">
+                                            <option th:value="${tp.id_tipo_postulante}" th:text="${tp.descri_tipo_postulante}">Alaska </option>
+                                        </th:block>
+                                    </th:block>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label>Nacionalidad</label>
+                                <select class="form-control select2" name="id_nacionalidad" style="width: 100%;" required disabled>
+                                    <option selected="selected" disabled>Seleccione</option>
+                                    <th:block th:each="n : ${nacionalidades}" th:if="${n.estado_nacionalidad != 'X'}">
+                                        <th:block th:if="${postulante.persona.nacionalidad != null}">
+                                            <option th:if="${n.id_nacionalidad == postulante.persona.nacionalidad.id_nacionalidad}"
+                                                th:value="${n.id_nacionalidad}" th:text="${n.nom_nacionalidad}" selected>Alaska</option>
+                                            <option th:if="${n.id_nacionalidad != postulante.persona.nacionalidad.id_nacionalidad}"
+                                                th:value="${n.id_nacionalidad}" th:text="${n.nom_nacionalidad}">Alaska</option>
+                                        </th:block>
+                                        <th:block th:if="${postulante.persona.nacionalidad == null}">
+                                            <option th:value="${n.id_nacionalidad}" th:text="${n.nom_nacionalidad}">Alaska</option>
+                                        </th:block>
+                                    </th:block>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-danger">
+                    <form action="../../../../form_habilitacion" method="post">
+                    <div class="card-header">
+                        <h3 class="card-title">Formulario Habilitacion</h3>
+                    </div>
+                    <div class="card-body">
+                
+                        <div class="row">
+                        
+                            <div class="col-4">
+                                <input type="hidden" th:field="${transaccion.id_transaccion}">
+                                <input type="hidden" name="id_postulante" th:value="${postulante.id_postulante}">
+                                <label for="">Requisitos</label>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <th:block th:each="r : ${requisitos}" th:if="${r.estado_requisito != 'X'}">
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" type="checkbox" name="id_requisito" th:id="${r.id_requisito}" th:value="${r.id_requisito}">
+                                                <label th:for="${r.id_requisito}" class="custom-control-label" th:text="${r.nom_requisito}">Custom Checkbox</label>
+                                            </div>
+                                        </th:block>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Carrera</label>
+                                <select class="form-control select2" name="id_carrera" style="width: 100%;" required>
+                                    <option selected="selected" disabled>Seleccione</option>
+                                    <th:block th:each="c : ${carreras}" th:if="${c.estado_carrera != 'X'}">
+                                        <option th:value="${c.id_carrera}" th:text="${c.nom_carrera}">Alaska
+                                        </option>
+                                    </th:block>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label>Facultad</label>
+                                <select class="form-control select2" name="id_facultad" style="width: 100%;" required>
+                                    <option selected="selected" disabled>Seleccione</option>
+                                    <th:block th:each="f : ${facultades}" th:if="${f.estado_facultad != 'X'}">
+                                        <option th:value="${f.id_facultad}" th:text="${f.nom_facultad}">Alaska
+                                        </option>
+                                    </th:block>
+                                </select>
+                            </div>
+                           
+                        
+                        </div>
+                        <div class="row">
+                        
+                        
+                            <div class="col-4">
+                               
+                            </div>
+                            <div class="col-4">
+                                <label>Procesos</label>
+                                <select class="form-control select2" name="id_proceso" style="width: 100%;" required>
+                                    <option selected="selected" disabled>Seleccione</option>
+                                    <th:block th:each="p : ${procesos}" th:if="${p.estado_proceso != 'X'}">
+                                        <option th:value="${p.id_proceso}" th:text="${p.nom_proceso}">Alaska
+                                        </option>
+                                    </th:block>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label>Ventanilla</label>
+                                <select class="form-control select2" name="id_ventanilla" style="width: 100%;" required>
+                                    <option selected="selected" disabled>Seleccione</option>
+                                    <th:block th:each="v : ${ventanillas}" th:if="${v.estado_ventanilla != 'X'}">
+                                        <option th:value="${v.id_ventanilla}" th:text="${v.nro_caja}">Alaska
+                                        </option>
+                                    </th:block>
+                                </select>
+                            </div>
+                           
+                        
+                        </div>
+                        <div class="row">
+                        
+                        
+                            <div class="col-4">
+                                <label for="">Pago </label>
+                                <input type="number" min="1" class="form-control" th:field="${transaccion.pago}" placeholder="Pago" required>
+                            </div>
+                            <div class="col-4">
+                                <label for="">Gestion </label>
+                                <input type="number" min="1" class="form-control" th:field="${transaccion.gestion}" placeholder="Gestion" required>
+                            </div>
+                            <div class="col-4">
+                                <label for="">Descuento </label>
+                                <input type="number" min="0" class="form-control" th:field="${transaccion.descuento}" placeholder="Descuento" required>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">SIGUIENTE</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+          
+        </div>
+        
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside th:replace="Layout/layout :: aside_2" class="control-sidebar control-sidebar-dark"> </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer th:replace="Layout/layout :: footer" > </footer>
+</div>
+
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+
+<!-- Select2 -->
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="plugins/raphael/raphael.min.js"></script>
+<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<!-- ChartJS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard2.js"></script>
+<script>
+    $(function () {
+      //Initialize Select2 Elements
+      $('.select2').select2()
+  
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+    })
+  </script>
+</body>
+</html>

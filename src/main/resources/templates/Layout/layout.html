@@ -22,6 +22,18 @@
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
+    <div th:if="${success2 != null}" th:fragment="alert-rojo" class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+        <th:block th:text="${success2}"></th:block>
+    </div>
+
+    <div th:if="${success != null}" th:fragment="alert-verde" class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fas fa-check"></i> Alert!</h5>
+        <th:block th:text="${success}"></th:block>
+    </div>
+
   <!-- Preloader -->
   <div th:fragment="preloader" class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
@@ -95,7 +107,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a th:href="${'../../../../panel'}" class="d-block" th:text="${session.usuario.administrativo.persona.nom_persona}">Alexander Pierce</a>
+          <a th:href="${'../../../../panel'}" class="d-block" th:text="${session.usuario.administrativo.descripcion}">Alexander Pierce</a>
         </div>
       </div>
 
@@ -134,9 +146,9 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a th:href="${'../../../../transaccion'}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Realizar Transaccion</p>
+                  <p>Realizar Transaccion o Habilitacion</p>
                 </a>
               </li>
             </ul>
